@@ -3,16 +3,50 @@ This project demonstrates a basic ETL pipeline setup that retrieves weather data
 
 ![image alt](https://github.com/raphaeloyelami/Weather-ETL-Project/blob/d59b54f808b3be3d20ca0f651255c75b4eb96267/architectural_diagram.png)
 
-- **Source**: OpenWeather API
-- **ETL Orchestration**: Apache Airflow
-- **Data Storage**: AWS S3
-- **Cloud Infrastructure**: AWS EC2 (with IAM role for permissions)
-- **Programming Language**: Python
-- **IDE**: Visual Studio (via SSH to EC2)
+# Project Overview
 
-## Prerequisites
+## Extract
+Data is pulled from the [OpenWeather API](https://openweathermap.org/api)
 
-1. **AWS EC2 Instance** with an IAM Role that has permissions to access OpenWeather API and S3.
-2. **Airflow** installed and running (on EC2).
-3. **AWS S3 bucket** to store processed data.
-4. **OpenWeather API key** for authentication.
+## Transform
+Data is cleaned and transformed (for example, converting units, filtering, etc.).
+
+## Load
+The transformed data is stored in an S3 bucket for further analysis.
+
+The ETL process is orchestrated using **Apache Airflow**, which is deployed on an AWS EC2 instance. The project leverages **IAM roles** for security, and **SSH** is used to interact with the EC2 instance.
+
+---
+
+# Project Components
+
+1. **OpenWeather API**  
+   - Extract weather data.
+
+2. **AWS EC2**  
+   - Hosts Apache Airflow for orchestrating the ETL process.
+
+3. **Apache Airflow**  
+   - Used to schedule and manage the workflow.
+
+4. **S3**  
+   - The transformed data is stored in an S3 bucket.
+
+5. **IAM Roles**  
+   - To manage access between AWS services.
+
+6. **SSH**  
+   - Used to connect to the EC2 instance.
+
+---
+
+# Prerequisites
+
+Before setting up the project, ensure you have:
+
+- AWS Account with appropriate permissions.
+- IAM Role for EC2 with access to S3 and necessary services.
+- Airflow installed on EC2 (if not using AWS-managed Airflow).
+- OpenWeather API Key.
+
+
